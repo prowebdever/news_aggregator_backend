@@ -1,0 +1,26 @@
+version: "3"
+services:
+  backend-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=news
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DB_PORT=3306
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=news
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - 3306:3306
