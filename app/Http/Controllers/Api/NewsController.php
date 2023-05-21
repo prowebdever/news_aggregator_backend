@@ -114,14 +114,6 @@ class NewsController extends Controller
         return ResponseHelper::sendResponse($filters, 200);
     }
 
-    /**
-     * Save the user's preferred news sources.
-     *
-     * @param User $authUser The authenticated user
-     * @param array $preferredSources The user's preferred news sources
-     *
-     * @return void
-     */
     public function saveUserPreferredSources($authUser, $preferredSources)
     {
         $authUser->update(['preferred_sources' => implode(',', $preferredSources)]);
